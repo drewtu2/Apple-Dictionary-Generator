@@ -38,4 +38,7 @@ One entry may have multiple indices.
 ```
 
 ## TODO
-- test usage include tags. 
+- test usage include tags to have a dictionary defined by multiple files
+included in one another
+- implement folder with img directory that copies imgs into the the project
+template directory
