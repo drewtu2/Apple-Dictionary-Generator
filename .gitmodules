@@ -1,0 +1,3 @@
+[submodule "Apple-Dictionary-Development-Kit"]
+	path = Apple-Dictionary-Development-Kit
+	url = git@github.com:drewtu2/Apple-Dictionary-Development-Kit.git
