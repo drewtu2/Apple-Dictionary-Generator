@@ -39,7 +39,7 @@ def main():
     GenerateXML(getattr(args,"dictionary-md"), getattr(args,"dictionary-name"))
     
     # Copy the necessary template files. 
-    PrepareOutputDirectory(getattr(args, "dictionary-name"))
+    PrepareOutputDirectory(getattr(args,"dictionary-md"), getattr(args,"dictionary-name"))
 
     # Move generated files. 
     Move(getattr(args, "dictionary-name"))

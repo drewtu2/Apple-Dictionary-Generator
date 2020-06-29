@@ -40,7 +40,7 @@ def GenerateXML(input_file, dictionary_name):
         f.write(md_html(contents))
         f.write("</d:dictionary>")
 
-def PrepareOutputDirectory(dictionary_name):
+def PrepareOutputDirectory(input_file, dictionary_name):
     """
     """
 
@@ -59,6 +59,7 @@ def PrepareOutputDirectory(dictionary_name):
         return
     
     shutil.copytree(src, output_directory)
+    shutil.copy(input_file, "{}/{}".format(output_directory, input_file))
 
 def Move(dictionary_name):
     """
