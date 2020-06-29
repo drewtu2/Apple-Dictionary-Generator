@@ -1,5 +1,30 @@
+import mistune
 from mistune.directives.base import Directive
 from mistune import HTMLRenderer
+
+def GenerateXML(input_file, dictionary_name):
+
+    # Read the md file.
+    with open(input_file, "r") as f:
+        contents = f.read()
+        print(contents)
+    
+    # Generate the contents of the dictionary. 
+    md_html = mistune.create_markdown( 
+            renderer=DictionaryRenderer(),
+            plugins=[DictionaryDirective()])
+    
+    # Output file. 
+    output_file = dictionary_name
+    output_file.replace(" ", "-")
+    output_file += ".xml"
+
+    # Write to the file with the appropriate surrounding dictionary matter. 
+    with open(output_file, "w") as f:
+        f.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
+        f.write("<d:dictionary xmlns=\"http://www.w3.org/1999/xhtml\" xmlns:d=\"http://www.apple.com/DTDs/DictionaryService-1.0.rng\">\n")
+        f.write(md_html(contents))
+        f.write("</d:dictionary>")
 
 class DictionaryRenderer(HTMLRenderer):
     NAME = "dictionary-xml"
