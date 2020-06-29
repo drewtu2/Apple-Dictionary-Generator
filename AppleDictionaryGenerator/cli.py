@@ -1,8 +1,7 @@
 import sys
 import argparse
 
-from DictionaryDirective import GenerateXML
-
+from AppleDictionaryGenerator.Pipeline import *
 
 def cli_argparser():
     """Define command line parsers.
@@ -35,8 +34,18 @@ def cli_argparser():
 def main():
     argsparser = cli_argparser()
     args = argsparser.parse_args()
+
     # Give md file and output name. 
     GenerateXML(getattr(args,"dictionary-md"), getattr(args,"dictionary-name"))
+    
+    # Copy the necessary template files. 
+    PrepareOutputDirectory(getattr(args, "dictionary-name"))
+
+    # Move generated files. 
+    Move(getattr(args, "dictionary-name"))
+
+    # Execute the make.
+    GenerateDictionary(getattr(args, "dictionary-name"))
 
 if __name__ == "__main__":
     main()
