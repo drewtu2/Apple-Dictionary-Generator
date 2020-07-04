@@ -1,7 +1,7 @@
 import sys
 import argparse
 
-from AppleDictionaryGenerator.Pipeline import *
+from AppleDictionaryGenerator.Pipeline import Pipeline
 
 def cli_argparser():
     """Define command line parsers.
@@ -25,8 +25,8 @@ def cli_argparser():
     
     # Create site parser
     validator_parser = subparsers.add_parser('generate')
-    validator_parser.add_argument('dictionary-md', type=check_no_space, help='The .md file with the dictionary contents')
-    validator_parser.add_argument('dictionary-name', type=str, help='The dictionary name.')
+    validator_parser.add_argument('config', type=check_no_space, 
+            help='The config file defining the dictionary structure.')
     # END PARSER DECLARATIONS
     # #######################
     return argparser
@@ -35,17 +35,8 @@ def main():
     argsparser = cli_argparser()
     args = argsparser.parse_args()
 
-    # Give md file and output name. 
-    GenerateXML(getattr(args,"dictionary-md"), getattr(args,"dictionary-name"))
-    
-    # Copy the necessary template files. 
-    PrepareOutputDirectory(getattr(args,"dictionary-md"), getattr(args,"dictionary-name"))
-
-    # Move generated files. 
-    Move(getattr(args, "dictionary-name"))
-
-    # Execute the make.
-    GenerateDictionary(getattr(args, "dictionary-name"))
+    # Give md file and output name and run the full pipeline.
+    Pipeline(getattr(args,"config"))
 
 if __name__ == "__main__":
     main()

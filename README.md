@@ -6,6 +6,10 @@
 ## Usage
 `python -m AppleDictionaryGenerator generate <md file path> <dictionary name>`
 
+The resulting dictionary folder will be generated and placed in the `build`
+directory of the current workspace.
+
+
 ## Md File Format
 Definition file written in markdown with CommonMark formatting. Each entry needs 
 to be preceded with some front matter. 
@@ -40,5 +44,5 @@ One entry may have multiple indices.
 ## TODO
 - test usage include tags to have a dictionary defined by multiple files
 included in one another
-- implement folder with img directory that copies imgs into the the project
+- implement folder with img directory that copies imgs into the project
 template directory
